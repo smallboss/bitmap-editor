@@ -1,0 +1,32 @@
+@import "../../assets/variables.scss";
+
+.home {
+  @include flex-to-center;
+  text-align: center;
+  margin-top: 150px;
+
+  &__textWrapper {
+    @include flex-to-center;
+    flex-direction: column;
+
+    &--welcome {
+      color: $pale_azure_color;
+      font-size: 21px;
+    }
+
+    &--mainText {
+      color: $white_color;
+      font-size: 80px;
+      font-weight: lighter;
+      margin: 20px 0;
+    }
+
+    &--annotation {
+      color: $white_color;
+      margin: 20px 0;
+      line-height: 34px;
+      font-size: 23px;
+      font-weight: 400;
+    }
+  }
+}

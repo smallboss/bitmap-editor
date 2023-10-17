@@ -1,0 +1,37 @@
+@import "../../assets/variables.scss";
+
+.header {
+  color: $white_color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  border-bottom: 1px solid $light_blue_color;
+
+  &__leftSide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & h3 {
+      font-weight: 600;
+    }
+  }
+
+  &__rightSide {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    &--faqButton {
+      color: $white_color;
+      text-decoration: none;
+    }
+
+    &--contactButton {
+      color: $white_color;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+}

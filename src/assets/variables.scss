@@ -1,0 +1,13 @@
+$pale_azure_color: #479bff;
+$marine_blue_color: #051932;
+$white_color: #ffffff;
+$light_blue_color: #214167;
+$light_marine_color: #214167;
+$dark_marine_color: #0e2541;
+$french-gray: #bbc2cf;
+
+@mixin flex-to-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
