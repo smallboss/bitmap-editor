@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import Icon from "../Icon";
 import "./style.scss";
 
 const Modal = ({ children, heading, setIsOpenedModal }) => {
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        }
+    })
+
     return (
         <div className="modal"  onClick={() => setIsOpenedModal(false)}>
             <div className="modal__window" onClick={(e) => e.stopPropagation()}>
