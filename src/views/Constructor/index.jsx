@@ -10,11 +10,13 @@ import OrderService from "../../services/order.service";
 
 import "./style.scss";
 import SocksViewer from "./components/SocksViewer";
+import OrderDetailsModal from "./components/OrderDetailsModal";
 
 const Constructor = () => {
   const { orderId } = useParams();
   const [step, setStep] = useState("pixel");
   const [order, setOrder] = useState(null);
+  const [isOpenedOrderDetailsModal, setIsOpenedOrderDetailsModal] = useState(true)
 
   useEffect(() => {
     const request = async () => {
@@ -47,7 +49,7 @@ const Constructor = () => {
           <span>Order no 000000X</span>
         </div>
 
-        <ProjectPanel onClick={(value) => console.log(value)} />
+        <ProjectPanel onClick={(value) => console.log(value)} setIsOpenedOrderDetailsModal={setIsOpenedOrderDetailsModal} />
 
         <Button onClick={() => setStep("order")}>
           <span>Ready to order</span>
@@ -71,6 +73,7 @@ const Constructor = () => {
         </>
       )}
       {step === "order" && <SocksViewer order={order} />}
+      {isOpenedOrderDetailsModal && <OrderDetailsModal setIsOpenedModal={setIsOpenedOrderDetailsModal}/>}
     </div>
   );
 };
