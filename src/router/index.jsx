@@ -17,7 +17,7 @@ const Router = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/constructor" element={<Constructor />} />
+        <Route exact path="/constructor/:orderId" element={<Constructor />} />
         <Route exact path="/faq" element={<Faq />} />
         <Route path="*" element={<div>Page not found!</div>} />
       </Routes>

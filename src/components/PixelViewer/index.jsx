@@ -7,7 +7,7 @@ const PixelViewer = () => {
   const canvasRef = useRef(null);
 
   const draw = (ctx, image) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
   };
 
