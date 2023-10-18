@@ -6,6 +6,13 @@
 .left-bar {
   width: 315px;
 }
+.viewer-container {
+  width: calc(100% - 420px - 315px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .constructor {
   width: 100%;
   height: calc(100% - 90px);

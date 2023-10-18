@@ -1,0 +1,28 @@
+.canvas-wrapper {
+  position: relative;
+  height: 100%;
+  .canvas-btns {
+    flex-direction: column;
+    display: flex;
+    transform: translateX(-100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    button {
+      display: flex;
+      width: 36px;
+      height: 36px;
+      padding: 4px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 2px;
+      border: 1px solid var(--Stroke, #214167);
+      background: var(--Box-Color, #0e2541);
+      margin-bottom: 6px;
+      margin-right: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}

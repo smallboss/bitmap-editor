@@ -2,6 +2,7 @@ import Button from "../../components/Button";
 import Comments from "../../components/Comments";
 import Design from "../../components/Design";
 import Icon from "../../components/Icon";
+import PixelViewer from "../../components/PixelViewer";
 import ProjectPanel from "../../components/ProjectPanel";
 import "./style.scss";
 
@@ -33,7 +34,9 @@ const Constructor = () => {
           />
         </Button>
       </div>
-      <div className="viewer-container"></div>
+      <div className="viewer-container">
+        <PixelViewer />
+      </div>
       <div className="right-bar">
         <Design onChange={(data) => console.log(data)} />
         <Comments />
