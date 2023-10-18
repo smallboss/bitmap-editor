@@ -11,7 +11,7 @@ const PixelViewer = () => {
     ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
   };
 
-  const checkLimit = (context, canvas, dx = 0, dy = 0) => {
+  const translate = (context, canvas, dx = 0, dy = 0) => {
     const zoom = context.currentScale || 1;
     const current = {
       x: context.currentTranslate.x + dx,
@@ -72,7 +72,7 @@ const PixelViewer = () => {
         const zoom = context.currentScale || 1;
         const dx = e.movementX / (2 * zoom);
         const dy = e.movementY / (2 * zoom);
-        checkLimit(context, canvas, dx, dy);
+        translate(context, canvas, dx, dy);
       }
     };
     const mouseup = () => {
@@ -112,7 +112,7 @@ const PixelViewer = () => {
     context.scale(scaleFactor, scaleFactor);
     context.translate(-centerX, -centerY);
 
-    checkLimit(context, canvas);
+    translate(context, canvas);
   };
 
   return (
