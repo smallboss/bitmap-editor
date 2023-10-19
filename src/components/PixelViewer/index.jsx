@@ -126,7 +126,7 @@ const PixelViewer = ({ order }) => {
         if (!context.conf?.zoom) {
           const scaleX = canvas.width / container.offsetWidth;
           const scaleY = canvas.height / container.offsetHeight;
-          const x = Math.floor(e.offsetX * scaleX) - 1;
+          const x = Math.floor(e.offsetX * scaleX);
           const y = Math.floor(e.offsetY * scaleY);
 
           if (context.conf?.erase) {
