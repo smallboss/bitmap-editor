@@ -58,6 +58,7 @@
         flex-wrap: wrap;
 
         & .color {
+            flex: calc(50% - 10px);
             display: flex;
             flex-shrink: 1;
             align-items: center;

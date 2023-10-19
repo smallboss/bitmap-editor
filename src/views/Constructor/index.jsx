@@ -80,7 +80,7 @@ const Constructor = () => {
         </>
       )}
       {step === "order" && <SocksViewer order={order} />}
-      {isOpenedOrderDetailsModal && <OrderDetailsModal setIsOpenedModal={setIsOpenedOrderDetailsModal} />}
+      {isOpenedOrderDetailsModal && <OrderDetailsModal setIsOpenedModal={setIsOpenedOrderDetailsModal} orderItems={order.orderItems[0]}/>}
       {isOpenedTipsModal && <TipsModal setIsOpenedModal={setIsOpenedTipsModal} />}
     </div>
   );
