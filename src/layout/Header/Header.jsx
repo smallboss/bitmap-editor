@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./styles.scss";
-import Button from "../../components/Button";
+
 const Header = () => {
   return (
     <div className="header">
@@ -12,10 +12,12 @@ const Header = () => {
         <Link to="/faq" className="header__rightSide--faqButton" type="text">
           FAQ
         </Link>
-        <Link className="header__rightSide--contactButton" type="text">
+        <a target="_blank" rel="noreferrer" href="https://socksfactory.pl/kontakt/" className="header__rightSide--contactButton" type="text">
           Contact
-        </Link>
-        <Button>Login</Button>
+        </a>
+        <button className="header__rightSide--logInButton">Login 
+          <div className="header__rightSide--logInButton--background"></div>
+        </button>
       </div>
     </div>
   );
