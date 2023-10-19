@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import rightArrow from '../../assets/icons/arrow_right.svg';
+import rightArrow from "../../assets/icons/arrow_right.svg";
 import "./styles.scss";
 
 const Faq = () => {
@@ -123,12 +123,11 @@ const Faq = () => {
         </div>
       </div>
       <div className="faq__backButton">
-        <Link to='/' className="faq__backButton--button">
+        <Link to="/" className="faq__backButton--button">
           Back
           <img src={rightArrow} alt="" />
         </Link>
       </div>
-
     </div>
   );
 };

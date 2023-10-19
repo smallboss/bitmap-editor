@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Home from "../views/Home/Home"
+import Home from "../views/Home/Home";
 // import Constructor from "../views/Constructor"
 
 const Constructor = lazy(() => import("../views/Constructor"));

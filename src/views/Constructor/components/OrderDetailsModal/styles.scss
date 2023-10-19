@@ -1,74 +1,74 @@
 @import "../../../../assets/variables.scss";
 
 .content {
-    padding-top: 37px;
-    padding-bottom: 47px;
+  padding-top: 37px;
+  padding-bottom: 47px;
+  display: flex;
+  gap: 90px;
+
+  &__specifications {
+    width: 226px;
+  }
+
+  &__sizes {
+    width: 193px;
+  }
+
+  &__title {
+    margin-bottom: 25px;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 27.3px;
+    color: $white_color;
+
+    &--low-margin {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__details {
+    margin-bottom: 15px;
+
+    &--subtitle,
+    &--description {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22.4px;
+    }
+
+    &--subtitle {
+      color: $white_color;
+      margin-bottom: 5px;
+    }
+
+    &--description {
+      color: $french-gray;
+
+      & span {
+        margin-left: 10px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__colors {
+    width: 205px;
     display: flex;
-    gap: 90px;
+    gap: 15px;
+    flex-wrap: wrap;
 
-    &__specifications {
-        width: 226px;
+    & .color {
+      flex: calc(50% - 10px);
+      display: flex;
+      flex-shrink: 1;
+      align-items: center;
+      gap: 10px;
     }
 
-    &__sizes {
-        width: 193px;
+    & .circle {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
     }
-
-    &__title {
-        margin-bottom: 25px;
-        font-size: 21px;
-        font-weight: 400;
-        line-height: 27.3px;
-        color: $white_color;
-
-        &--low-margin {
-            margin-bottom: 15px;
-        }
-    }
-
-    &__details {
-        margin-bottom: 15px;
-
-        &--subtitle,
-        &--description {
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 22.4px;
-        }
-
-        &--subtitle {
-            color: $white_color;
-            margin-bottom: 5px;
-        }
-
-        &--description {
-            color: $french-gray;
-
-            & span {
-                margin-left: 10px;
-                font-weight: 700;
-            }
-        }
-    }
-
-    &__colors {
-        width: 205px;
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-
-        & .color {
-            flex: calc(50% - 10px);
-            display: flex;
-            flex-shrink: 1;
-            align-items: center;
-            gap: 10px;
-        }
-
-        & .circle {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-        }
-    }
+  }
 }

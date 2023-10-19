@@ -1,10 +1,10 @@
 import Icon from "../Icon";
 import "./style.scss";
 
-const ProjectPanel = ({ 
+const ProjectPanel = ({
   onClick = () => {},
   setIsOpenedOrderDetailsModal,
-  setIsOpenedTipsModal
+  setIsOpenedTipsModal,
 }) => {
   return (
     <div className="project-panel">

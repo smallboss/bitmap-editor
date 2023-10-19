@@ -16,8 +16,9 @@ const Constructor = () => {
   const [step, setStep] = useState("pixel");
   const [order, setOrder] = useState(null);
 
-  const [isOpenedOrderDetailsModal, setIsOpenedOrderDetailsModal] = useState(false)
-  const [isOpenedTipsModal, setIsOpenedTipsModal] = useState(false)
+  const [isOpenedOrderDetailsModal, setIsOpenedOrderDetailsModal] =
+    useState(false);
+  const [isOpenedTipsModal, setIsOpenedTipsModal] = useState(false);
 
   useEffect(() => {
     const request = async () => {
@@ -50,8 +51,8 @@ const Constructor = () => {
           <span>Order no 000000X</span>
         </div>
 
-        <ProjectPanel 
-          onClick={(value) => console.log(value)} 
+        <ProjectPanel
+          onClick={(value) => console.log(value)}
           setIsOpenedOrderDetailsModal={setIsOpenedOrderDetailsModal}
           setIsOpenedTipsModal={setIsOpenedTipsModal}
         />
@@ -68,8 +69,15 @@ const Constructor = () => {
       </div>
       {step === "pixel" && <PixelViewer order={order} />}
       {step === "order" && <SocksViewer order={order} />}
-      {isOpenedOrderDetailsModal && <OrderDetailsModal setIsOpenedModal={setIsOpenedOrderDetailsModal} orderItems={order.orderItems[0]}/>}
-      {isOpenedTipsModal && <TipsModal setIsOpenedModal={setIsOpenedTipsModal} />}
+      {isOpenedOrderDetailsModal && (
+        <OrderDetailsModal
+          setIsOpenedModal={setIsOpenedOrderDetailsModal}
+          orderItems={order.orderItems[0]}
+        />
+      )}
+      {isOpenedTipsModal && (
+        <TipsModal setIsOpenedModal={setIsOpenedTipsModal} />
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import "./styles.scss";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,7 +20,10 @@ const Home = () => {
           <br /> throughout the process to the finish line.
         </p>
         <div className="home__buttons">
-          <Link className="home__buttons--getStart" to="constructor/6526d5bffb30d429e3c68ad7">
+          <Link
+            className="home__buttons--getStart"
+            to="constructor/6526d5bffb30d429e3c68ad7"
+          >
             Get Started
             <div className="home__buttons--getStart--background"></div>
           </Link>
