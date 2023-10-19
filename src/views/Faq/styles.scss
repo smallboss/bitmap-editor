@@ -1,8 +1,7 @@
 @import "../../assets/variables.scss";
 
 .faq {
-  margin-top: 40px;
-  padding: 0 30px;
+  padding: 63px 50px 57px;
   overflow: hidden;
 
   &__headerText {
@@ -13,47 +12,47 @@
       font-weight: 500;
     }
   }
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
+  // ::-webkit-scrollbar {
+  //   width: 10px;
+  //   height: 10px;
+  // }
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  // ::-webkit-scrollbar-track {
+  //   background: transparent;
+  // }
 
-  ::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background: rgb(20, 105, 202);
-    height: 10px;
-  }
+  // ::-webkit-scrollbar-thumb {
+  //   border-radius: 20px;
+  //   background: rgb(20, 105, 202);
+  //   height: 10px;
+  // }
 
   &__content {
+    margin: 35px 0;
     color: $white_color;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     flex-wrap: wrap;
-    max-height: 800px;
-    overflow-y: auto;
-    gap: 30px;
-    padding: 20px 0;
+    row-gap: 19px;
+    column-gap: 20px;
 
     &--block {
-      width: calc(28% - 15px);
+      width: calc(100%/4 - 19px);
       border: 1px solid $light_marine_color;
-      border-radius: 15px;
-      padding: 20px 30px;
+      border-radius: 10px;
+      padding: 20px 30px 25px;
       background-color: $dark_marine_color;
 
       &__header {
         font-size: 21px;
-        font-weight: 600;
-        margin-bottom: 15px;
+        font-weight: 700;
+        line-height: 27.3px;
+        margin-bottom: 20px;
       }
 
       &__content {
-        font-size: 15px;
-        line-height: 22px;
+        font-size: 16px;
+        line-height: 22.4px;
       }
     }
   }
@@ -64,20 +63,15 @@
     margin-top: 30px;
 
     &--button {
-      text-decoration: none;
       display: flex;
       align-items: center;
-      background-color: $blue_color;
-      font-size: 17px;
-      justify-content: space-between;
-      color: $white_color;
+      gap: 11px;
+      padding: 10px 15px;
+      font-size: 21px;
+      line-height: 27.3px;
       border: none;
-      border-radius: 60px;
-      padding: 10px 20px;
-
-      & img {
-        margin-left: 10px;
-      }
+      border-radius: 100px;
+      background-color: $blue_color;
     }
   }
 }

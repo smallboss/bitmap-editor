@@ -30,7 +30,11 @@ body {
   height: 100%;
 }
 
-ul,
-ol {
+ul, ol {
   list-style: none;
+}
+
+a, a:visited {
+  color: $white_color;
+  text-decoration: none;
 }

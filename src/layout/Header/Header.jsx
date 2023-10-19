@@ -4,25 +4,18 @@ import "./styles.scss";
 const Header = () => {
   return (
     <div className="header">
-      <div className="header__leftSide">
+      <Link to="/" className="header__leftSide">
         <h3>Studio Bitmap</h3>
         <p>Socks Factory</p>
-      </div>
+      </Link>
       <div className="header__rightSide">
-        <Link to="/faq" className="header__rightSide--faqButton" type="text">
+        <Link to="/faq" className="header__rightSide--link" type="text">
           FAQ
         </Link>
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href="https://socksfactory.pl/kontakt/"
-          className="header__rightSide--contactButton"
-          type="text"
-        >
+        <a target="_blank" rel="noreferrer" href="https://socksfactory.pl/kontakt/" className="header__rightSide--link" type="text">
           Contact
         </a>
-        <button className="header__rightSide--logInButton">
-          Login
+        <button className="header__rightSide--logInButton">Login 
           <div className="header__rightSide--logInButton--background"></div>
         </button>
       </div>
