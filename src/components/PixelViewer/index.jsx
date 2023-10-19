@@ -17,9 +17,6 @@ const PixelViewer = ({ order }) => {
 
   const draw = (ctx, image, pixels) => {
     ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
-    const test = 0.5 / (ctx.currentScale || 1);
-    
-    ctx.translate(test, test);
 
     for (let pixel in pixels) {
       ctx.beginPath();
@@ -27,7 +24,6 @@ const PixelViewer = ({ order }) => {
       ctx.rect(...pixel.split(","), 1, 1);
       ctx.fill()
     }
-    ctx.translate(-test, -test);
   };
 
   const drawGrid = (ctx) => {
