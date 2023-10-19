@@ -1,0 +1,80 @@
+@import "../../assets/variables.scss";
+
+.home {
+  @include flex-to-center;
+  text-align: center;
+  padding: 63px 50px;
+  margin-top: calc(126px - 63px);
+
+  &__textWrapper {
+    @include flex-to-center;
+    flex-direction: column;
+
+    &--welcome {
+      color: $pale_azure_color;
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 28px;
+      text-transform: uppercase;
+      letter-spacing: 2.1px;
+    }
+
+    &--mainText {
+      color: $white_color;
+      margin: 20px 0 35px;
+      font-size: 90px;
+      font-weight: 500;
+      line-height: 108px;
+    }
+
+    &--annotation {
+      color: $white_color;
+      margin-bottom: 45px;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 34px;
+    }
+  }
+  &__buttons {
+    display: flex;
+    gap: 30px;
+
+    &--default {
+      cursor: pointer;
+      padding: 10px 25px;
+      font-size: 21px;
+      font-weight: 400;
+      line-height:  27.3px;
+      color: $white_color;
+      border: none;
+      border-radius: 20px;
+      background-color: $blue_color;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+
+      &--background {
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-image: linear-gradient(#81deff, #81deff);
+        transition: all 500ms ease-in-out;
+        z-index: -1;
+        border-radius: 50%;
+      }
+
+      &:hover {
+        color: $marine_blue_color;
+      }
+
+      &:hover &--background {
+        width: 150%;
+        height: 406%;
+        border: none;
+      }
+    }
+  }
+}

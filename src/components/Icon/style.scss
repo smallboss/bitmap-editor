@@ -1,0 +1,67 @@
+[class^="icon-"],
+[class*=" icon-"] {
+  width: 16px;
+  height: 16px;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #9ba1ad;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+.icon {
+  &-arrow-left {
+    mask-image: url("../../assets/icons/arrow-left.svg");
+    -webkit-mask-image: url("../../assets/icons/arrow-left.svg");
+  }
+  &-arrow-up {
+    mask-image: url("../../assets/icons/arrow-up.svg");
+    -webkit-mask-image: url("../../assets/icons/arrow-up.svg");
+  }
+  &-eraser {
+    mask-image: url("../../assets/icons/eraser.svg");
+    -webkit-mask-image: url("../../assets/icons/eraser.svg");
+  }
+  &-eye {
+    mask-image: url("../../assets/icons/eye.svg");
+    -webkit-mask-image: url("../../assets/icons/eye.svg");
+  }
+  &-info {
+    mask-image: url("../../assets/icons/info.svg");
+    -webkit-mask-image: url("../../assets/icons/info.svg");
+  }
+  &-move {
+    mask-image: url("../../assets/icons/move.svg");
+    -webkit-mask-image: url("../../assets/icons/move.svg");
+  }
+  &-pencil {
+    mask-image: url("../../assets/icons/pencil.svg");
+    -webkit-mask-image: url("../../assets/icons/pencil.svg");
+  }
+  &-share {
+    mask-image: url("../../assets/icons/share.svg");
+    -webkit-mask-image: url("../../assets/icons/share.svg");
+  }
+  &-tips {
+    mask-image: url("../../assets/icons/tips.svg");
+    -webkit-mask-image: url("../../assets/icons/tips.svg");
+  }
+  &-zoom-in {
+    mask-image: url("../../assets/icons/zoom-in.svg");
+    -webkit-mask-image: url("../../assets/icons/zoom-in.svg");
+  }
+  &-zoom-out {
+    mask-image: url("../../assets/icons/zoom-out.svg");
+    -webkit-mask-image: url("../../assets/icons/zoom-out.svg");
+  }
+  &-modal-close {
+    mask-image: url("../../assets/icons/modal-close.svg");
+    -webkit-mask-image: url("../../assets/icons/modal-close.svg");
+  }
+}

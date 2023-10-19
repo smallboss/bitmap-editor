@@ -1,0 +1,226 @@
+{
+    "category1": [
+        {"name":"2029/153 OW", "code":"#EEF2F4", "price": 0},
+        {"name":"0006 L", "code":"#F7BF4D", "price": 0},
+        {"name":"203 D", "code":"#F14030", "price": 0},
+        {"name":"0005 L", "code":"#E9CFDC", "price": 0},
+
+        {"name":"114 L", "code":"#EEEEEE", "price": 0},
+        {"name":"10179 M", "code":"#F3AC1C", "price": 0},
+        {"name":"0002 D", "code":"#B70F12", "price": 0},
+        {"name":"366 L", "code":"#EDB1D7", "price": 0},
+
+        {"name":"0065/1005 L", "code":"#E5E5E4", "price": 0},
+        {"name":"10182 D", "code":"#F5AC1A", "price": 0},
+        {"name":"30217 M", "code":"#9A2628", "price": 0},
+        {"name":"371 L", "code":"#F0BADC", "price": 0},
+        
+        {"name":"101 L", "code":"#ECE6D2", "price": 0},
+        {"name":"2012K M", "code":"#DA8220", "price": 0},
+        {"name":"0001 D", "code":"#CC0523", "price": 0},
+        {"name":"6030 L", "code":"#E5B4C9", "price": 0}
+    ],
+    "category2": [
+        {"name":"115 L", "code":"#F2E7B0", "price": 0},
+        {"name":"202 M", "code":"#E9731D", "price": 0},
+        {"name":"6017 D", "code":"#980107", "price": 0},
+        {"name":"30679 L", "code":"#DD9CAF", "price": 0},
+
+        {"name":"103 M", "code":"#27832B", "price": 0},
+        {"name":"201 L", "code":"#F8A568", "price": 0},
+        {"name":"30203 D", "code":"#7D0116", "price": 0},
+        {"name":"367 L", "code":"#E66FA3", "price": 0},
+
+        {"name":"10217 D", "code":"#F6E803", "price": 0},
+        {"name":"259 L", "code":"#F56B3D", "price": 0},
+        {"name":"3929 L", "code":"#EEE5ED", "price": 0},
+        {"name":"303 L", "code":"#CA4D87", "price": 0},
+
+        {"name":"126 D", "code":"#F4D230", "price": 0},
+        {"name":"6012 D", "code":"#F7662F", "price": 0},
+        {"name":"301 L", "code":"#E7D6E0", "price": 0},
+        {"name":"368 M", "code":"#C6085D", "price": 0}
+    ],
+    "category3": [
+        {"name":"30205 D", "code":"#6D0013", "price": 0},
+        {"name":"305 L", "code":"#F9778F", "price": 0},
+        {"name":"4939 D", "code":"#6D0051", "price": 0},
+        {"name":"4044 M", "code":"#886DA9", "price": 0},
+
+        {"name":"30035 D", "code":"#A80023", "price": 0},
+        {"name":"306 M", "code":"#F37B7D", "price": 0},
+        {"name":"30216 D", "code":"#930258", "price": 0},
+        {"name":"467 D", "code":"#430E59", "price": 0},
+
+        {"name":"403 M", "code":"#D31755", "price": 0},
+        {"name":"0308", "code":"#E56660", "price": 0},
+        {"name":"438 D", "code":"#4D013C", "price": 0},
+        {"name":"701 L", "code":"#9EB4EB", "price": 0},
+
+        {"name":"401 D", "code":"#C30043", "price": 0},
+        {"name":"3905 M", "code":"#F6696D", "price": 0},
+        {"name":"407 D", "code":"#610025", "price": 0},
+        {"name":"50051 L", "code":"#8194D0", "price": 0}
+    ],
+    "category4": [
+        {"name":"6028 D", "code":"#CF0066", "price": 0},
+        {"name":"30225 D", "code":"#F54F67", "price": 0},
+        {"name":"30680 D", "code":"#37010F", "price": 0},
+        {"name":"408 D", "code":"#272F79", "price": 0},
+
+        {"name":"466 M", "code":"#C14786", "price": 0},
+        {"name":"30669", "code":"#CB0827", "price": 0},
+        {"name":"463 D", "code":"#2F0107", "price": 0},
+        {"name":"4937 M", "code":"#5C4B6F", "price": 0},
+
+        {"name":"307 L", "code":"#EACEC3", "price": 0},
+        {"name":"389 M", "code":"#E4A2BE", "price": 0},
+        {"name":"30036 D", "code":"#630114", "price": 0},
+        {"name":"406 D", "code":"#28124F", "price": 0},
+
+        {"name":"304 L", "code":"#EAB1B4", "price": 0},
+        {"name":"451 L", "code":"#B65D8B", "price": 0},
+        {"name":"50031 L", "code":"#CAC3E5", "price": 0},
+        {"name":"4031 D", "code":"#07002E", "price": 0}
+    ],
+    "category5": [
+        {"name":"416 D", "code":"#210F35", "price": 0},
+        {"name":"14202 L", "code":"#8DBFE1", "price": 0},
+        {"name":"704 M", "code":"#286EA7", "price": 0},
+        {"name":"779 M", "code":"#0F1F2F", "price": 0},
+
+        {"name":"30052 L", "code":"#86BAEC", "price": 0},
+        {"name":"754 L", "code":"#88B7EA", "price": 0},
+        {"name":"606 D", "code":"#013561", "price": 0},
+        {"name":"90554", "code":"#0D151F", "price": 0},
+
+        {"name":"702 L", "code":"#5A85CF", "price": 0},
+        {"name":"70454", "code":"#58A9E3", "price": 0},
+        {"name":"705 D", "code":"#024A7D", "price": 0},
+        {"name":"70449", "code":"#001834", "price": 0},
+
+        {"name":"4007 M", "code":"#2562AF", "price": 0},
+        {"name":"703 L", "code":"#61AAD3", "price": 0},
+        {"name":"0786 KS", "code":"#04204C", "price": 0},
+        {"name":"708 D", "code":"#142539", "price": 0}
+    ],
+    "category6": [
+        {"name":"2297 D", "code":"#127CBC", "price": 0},
+        {"name":"0045 M", "code":"#08C2E5", "price": 0},
+        {"name":"70178 L", "code":"#7E9BBC", "price": 0},
+        {"name":"70348", "code":"#0B0624", "price": 0},
+
+        {"name":"706 D", "code":"#056DC6", "price": 0},
+        {"name":"2213 M", "code":"#5AA5DE", "price": 0},
+        {"name":"0043 M", "code":"#7CA2BD", "price": 0},
+        {"name":"729 D", "code":"#080D2D", "price": 0},
+
+        {"name":"707 D", "code":"#015BB3", "price": 0},
+        {"name":"40323 M", "code":"#558FC6", "price": 0},
+        {"name":"2294 M", "code":"#32577C", "price": 0},
+        {"name":"90128 D", "code":"#0D1D2A", "price": 0},
+
+        {"name":"70179 KS", "code":"#002378", "price": 0},
+        {"name":"70453 D", "code":"#0A5DA7", "price": 0},
+        {"name":"0793", "code":"#1A4271", "price": 0},
+        {"name":"50148 D", "code":"#051D2D", "price": 0}
+    ],
+    "category7": [
+        {"name":"4035 D", "code":"#05081B", "price": 0},
+        {"name":"604 D", "code":"#06809F", "price": 0},
+        {"name":"624 D", "code":"#05081B", "price": 0},
+        {"name":"505 D", "code":"#8FA51E", "price": 0},
+        {"name":"50397", "code":"#DD0000", "price": 0},
+
+        {"name":"0018 D", "code":"#060F18", "price": 0},
+        {"name":"605 KS", "code":"#0A7791", "price": 0},
+        {"name":"50499", "code":"#05767A", "price": 0},
+        {"name":"50061 KS", "code":"#067D27", "price": 0},
+        {"name":"50236", "code":"#024B40", "price": 0},
+
+        {"name":"50402 L", "code":"#B6EAED", "price": 0},
+        {"name":"0639", "code":"#034760", "price": 0},
+        {"name":"623 D", "code":"#013740", "price": 0},
+        {"name":"50057 D", "code":"#237F40", "price": 0},
+        {"name":"509 D", "code":"#001006", "price": 0},
+
+        {"name":"601 L", "code":"#7CD1DA", "price": 0},
+        {"name":"50375", "code":"#86D2BE", "price": 0},
+        {"name":"501/008L", "code":"#C7E3AB", "price": 0},
+        {"name":"507 D", "code":"#1C622B", "price": 0},
+        {"name":"50401 KS", "code":"#02816F", "price": 0}
+    ],
+    "category8": [
+        {"name":"618 M", "code":"#3CA4AF", "price": 0},
+        {"name":"556 L", "code":"#6DB8B8", "price": 0},
+        {"name":"50064 M", "code":"#CFE445", "price": 0},
+        {"name":"50399 D", "code":"#0F530B", "price": 0},
+        {"name":"50396 KS", "code":"#0C867D", "price": 0},
+
+        {"name":"602 M", "code":"#15A6BB", "price": 0},
+        {"name":"50048 M", "code":"#1BB998", "price": 0},
+        {"name":"502 L", "code":"#C2D68E", "price": 0},
+        {"name":"558 KS", "code":"#01794A", "price": 0},
+        {"name":"3025 L", "code":"#D0C9B7", "price": 0},
+
+        {"name":"30129 KS", "code":"#1EC0A4", "price": 0},
+        {"name":"50056 L", "code":"#1EC0A4", "price": 0},
+        {"name":"503 L", "code":"#94D98A", "price": 0},
+        {"name":"50400 KS", "code":"#007343", "price": 0},
+        {"name":"7001", "code":"#A99D87", "price": 0},
+
+        {"name":"687 D", "code":"#054E80", "price": 0},
+        {"name":"603 D", "code":"#12A09A", "price": 0},
+        {"name":"50395", "code":"#55A228", "price": 0},
+        {"name":"541 KS", "code":"#005A0E", "price": 0},
+        {"name":"0003 L", "code":"#7E867B", "price": 0}
+    ],
+    "category9": [
+        {"name":"557 M", "code":"#434138", "price": 0},
+        {"name":"0040 L", "code":"#80655B", "price": 0},
+        {"name":"813 M", "code":"#544143", "price": 0},
+        {"name":"8002 L", "code":"#D1D4E5", "price": 0},
+        {"name":"906 M", "code":"#374550", "price": 0},
+
+        {"name":"3002 M", "code":"#797D65", "price": 0},
+        {"name":"827 L", "code":"#5C4B44", "price": 0},
+        {"name":"80280", "code":"#513530", "price": 0},
+        {"name":"901 L", "code":"#BBC5CE", "price": 0},
+        {"name":"8008 D", "code":"#1C2129", "price": 0},
+
+        {"name":"804 M", "code":"#434227", "price": 0},
+        {"name":"70082 M", "code":"#3F362F", "price": 0},
+        {"name":"838 D", "code":"#1E0D0C", "price": 0},
+        {"name":"2017 L", "code":"#B6B7C9", "price": 0},
+        {"name":"9934 D", "code":"#232A34", "price": 0},
+
+        {"name":"2617 D", "code":"#3C3C30", "price": 0},
+        {"name":"806 M", "code":"#5E5552", "price": 0},
+        {"name":"814 D", "code":"#3F2421", "price": 0},
+        {"name":"2012 L", "code":"#66656A", "price": 0},
+        {"name":"961 D", "code":"#04070C", "price": 0}
+    ],
+    "category10": [
+        {"name":"801 L", "code":"#DFCEB8", "price": 0},
+        {"name":"808 D", "code":"#505046", "price": 0},
+        {"name":"815 D", "code":"#47322F", "price": 0},
+        {"name":"903 L", "code":"#7D9EBC", "price": 0},
+        {"name":"2999 D", "code":"#212121", "price": 0},
+
+        {"name":"1012 L", "code":"#BB9C84", "price": 0},
+        {"name":"80622 M", "code":"#964D23", "price": 0},
+        {"name":"2332 D", "code":"#1A0E10", "price": 0},
+        {"name":"904 M", "code":"#31435C", "price": 0},
+
+        {"name":"888 L", "code":"#A3958C", "price": 0},
+        {"name":"829 M", "code":"#653A1A", "price": 0},
+        {"name":"80071 D", "code":"#3C2932", "price": 0},
+        {"name":"8006 M", "code":"#6D7C93", "price": 0},
+
+        {"name":"1210 M", "code":"#C2B3AC", "price": 0},
+        {"name":"80623 D", "code":"#885A45", "price": 0},
+        {"name":"2273 D", "code":"#030004", "price": 0},
+        {"name":"8007 M", "code":"#232F44", "price": 0}
+    ]
+    
+}

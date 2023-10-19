@@ -1,0 +1,75 @@
+@import "../../assets/variables.scss";
+
+.faq {
+  padding: 63px 50px 57px;
+  overflow: hidden;
+
+  &__headerText {
+    color: $white_color;
+
+    &--text {
+      font-size: 47px;
+      font-weight: 500;
+    }
+  }
+  // ::-webkit-scrollbar {
+  //   width: 10px;
+  //   height: 10px;
+  // }
+
+  // ::-webkit-scrollbar-track {
+  //   background: transparent;
+  // }
+
+  // ::-webkit-scrollbar-thumb {
+  //   border-radius: 20px;
+  //   background: rgb(20, 105, 202);
+  //   height: 10px;
+  // }
+
+  &__content {
+    margin: 35px 0;
+    color: $white_color;
+    display: grid;
+    gap: 19px;
+    grid-template-columns: repeat(4, 1fr);
+
+    &--block {
+      //width: calc(100%/4 - 19px);
+      border: 1px solid $light_marine_color;
+      border-radius: 10px;
+      padding: 23px 30px;
+      background-color: $dark_marine_color;
+
+      &__header {
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1.3;
+        margin-bottom: 20px;
+      }
+
+      &__content {
+        font-size: 16px;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  &__backButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+
+    &--button {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 15px;
+      font-size: 21px;
+      line-height: 1.3;
+      border: none;
+      border-radius: 100px;
+      background-color: $blue_color;
+    }
+  }
+}

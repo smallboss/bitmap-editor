@@ -1,0 +1,136 @@
+.design {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #214167;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0e2541;
+  .design__header {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    color: aliceblue;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #214167;
+  }
+}
+.design__item {
+  color: white;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  border-bottom: 1px solid #214167;
+  .design__item__header {
+    display: flex;
+    padding: 15px;
+    span {
+      margin: 0 10px;
+    }
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      background: #214167;
+    }
+  }
+  .toggle-slide {
+    display: flex;
+    align-items: center;
+    margin-top: -3px;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mirror-y {
+  transform: scaleY(-1);
+}
+.design__item__body {
+  .body-title {
+    padding: 15px;
+    color: #f2f3f5;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+  }
+  .body-container {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 10px;
+  }
+  .marker {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .color-plus {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 8px;
+    position: relative;
+    background-color: #006ff2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 7px;
+      background-color: white;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 1px;
+      background-color: white;
+    }
+  }
+
+  .body-item {
+    display: flex;
+    padding: 5px 14px 5px 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: var(--Black, #051932);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.4s;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+}
+.toggle {
+  width: 45px;
+  height: 20px;
+  background-color: #6e7683;
+  margin-left: 15px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  .toggle-thumb {
+    width: 18px;
+    height: 17px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+    margin-left: 2px;
+  }
+}
