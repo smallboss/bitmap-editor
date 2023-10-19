@@ -1,9 +1,7 @@
 import "./styles.scss";
-import {Link, NavLink, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="home">
       <div className="home__textWrapper">
@@ -21,17 +19,8 @@ const Home = () => {
           experience
           <br /> throughout the process to the finish line.
         </p>
-        {/*<div style={{ display: "flex" }}>*/}
-        {/*  <Button*/}
-        {/*    style={{ marginRight: "20px" }}*/}
-        {/*    onClick={() => navigate('constructor/6526d5bffb30d429e3c68ad7')}*/}
-        {/*  >*/}
-        {/*    Get Started*/}
-        {/*  </Button>*/}
-        {/*  <Button onClick={() => navigate('constructor/6526d5bffb30d429e3c68ad7')}>Log In</Button>*/}
-        {/*</div>*/}
         <div className="home__buttons">
-          <Link className="home__buttons--getStart" to="/constructor">
+          <Link className="home__buttons--getStart" to="constructor/6526d5bffb30d429e3c68ad7">
             Get Started
             <div className="home__buttons--getStart--background"></div>
           </Link>
