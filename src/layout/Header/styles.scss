@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: 26px 50px 25px;
   border-bottom: 1px solid $light_blue_color;
 
   &__leftSide {
@@ -13,43 +13,58 @@
     flex-direction: column;
     align-items: flex-start;
 
+    & h3, p {
+      line-height: 30.025px;
+    }
+
     & h3 {
-      font-weight: 600;
+      font-size: 27.801px;
+      font-weight: 700;
+    }
+
+    & p {
+      font-size: 26.257px;
+      font-weight: 500;
     }
   }
 
   &__rightSide {
     display: flex;
-    gap: 20px;
+    gap: 35px;
     align-items: center;
 
-    &--faqButton {
-      color: $white_color;
-      text-decoration: none;
-    }
-
-    &--contactButton {
+    &--link {
       color: $white_color;
       text-transform: uppercase;
       text-decoration: none;
+      transition: all 150ms ease-in-out;
+
+      &:hover {
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 28px;
+        padding-bottom: 2.5px;
+        border-bottom: 1px solid $white_color;
+      }
     }
 
     &--logInButton {
+      cursor: pointer;
       border: none;
-      font-size: 18px;
-      border-radius: 20px;
+      font-size: 21px;
+      line-height: 27.3px;
+      border-radius: 60.526px;
       font-weight: 400;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: $blue_color;
-      padding: 0 30px;
-      color: #ffffff;
+      color: $white_color;
       overflow: hidden;
       position: relative;
       z-index: 2;
       text-decoration: none;
-      padding: 10px 30px;
+      padding: 10px 25px;
 
       &--background {
         width: 0;
@@ -59,7 +74,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-image: linear-gradient(#81deff, #81deff);
-        transition: 0.5s;
+        transition: all 500ms ease-in-out;
         z-index: -1;
         border-radius: 50%;
       }
@@ -69,7 +84,6 @@
         height: 406%;
         color: #ffffff;
         border: none;
-        cursor: pointer;
       }
     }
   }
