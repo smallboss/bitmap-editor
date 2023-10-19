@@ -1,14 +1,40 @@
 import { useEffect, useRef } from "react";
-import ImageTest from "../../assets/test.png";
 import Icon from "../Icon";
 import "./style.scss";
 
-const PixelViewer = () => {
+const PixelViewer = ({ order }) => {
   const canvasRef = useRef(null);
+  const gridRef = useRef(null);
+  const drawRef = useRef(null);
 
   const draw = (ctx, image) => {
-    // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
+  };
+
+  const drawing = (ctx, array) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    array.forEach((item) => {
+      ctx.fillRect(...item.split(","), 1, 1);
+    });
+  };
+
+  const drawCover = (ctx) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.beginPath();
+    const step = 10;
+    for (let x = 0; x <= ctx.canvas.width; x += step) {
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, ctx.canvas.height);
+    }
+
+    for (let y = 0; y <= ctx.canvas.height; y += step) {
+      ctx.moveTo(0, y - 0);
+      ctx.lineTo(ctx.canvas.width, y - 0);
+    }
+
+    ctx.strokeStyle = "#6E7683";
+    ctx.lineWidth = 1;
+    ctx.stroke();
   };
 
   const translate = (context, canvas, dx = 0, dy = 0) => {
@@ -41,10 +67,12 @@ const PixelViewer = () => {
 
     context.currentTranslate = current;
     context.translate(dx, dy);
+    return { dx, dy };
   };
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const container = canvas.parentElement;
     const context = canvas.getContext("2d");
     context.imageSmoothingEnabled = false;
     context.currentTranslate = {
@@ -53,47 +81,82 @@ const PixelViewer = () => {
     };
     let animationFrameId;
     let isDragging = false;
+    let isLoad = true;
 
     let image = new Image();
     image.onload = () => {
-      window
-        .createImageBitmap(image, { resizeQuality: "pixelated" })
-        .then((result) => {
-          image = result;
-        });
+      setTimeout(() => {
+        image.onload = null;
+        image.src = canvas.toDataURL();
+        isLoad = false;
+      }, 700);
     };
-    image.src = ImageTest;
+    image.crossOrigin = "anonymous";
+    image.src = order.template.file_data[0];
 
+    const grid = gridRef.current;
+    const gridCtx = grid.getContext("2d");
+    gridCtx.imageSmoothingEnabled = false;
+
+    const drawCanvas = drawRef.current;
+    const drawCtx = drawCanvas.getContext("2d");
+    gridCtx.imageSmoothingEnabled = false;
+
+    let mod = "draw";
+
+    window.mod = () => {
+      mod = mod ? "" : "draw";
+    };
     const mousedown = () => {
       isDragging = true;
     };
+    let array = [];
     const mousemove = (e) => {
       if (isDragging) {
         const zoom = context.currentScale || 1;
+        if (mod === "draw") {
+          const scaleX = drawCanvas.width / container.offsetWidth / zoom;
+          const scaleY = drawCanvas.height / container.offsetHeight / zoom;
+          const transform = context.getTransform();
+          const translationX = transform.e / zoom;
+          const translationY = transform.f / zoom;
+          const x = Math.floor(e.offsetX * scaleX - translationX);
+          const y = Math.floor(e.offsetY * scaleY - translationY);
+
+          if (!array.includes(`${x},${y}`)) {
+            array.push(`${x},${y}`);
+          }
+
+          return;
+        }
         const dx = e.movementX / (2 * zoom);
         const dy = e.movementY / (2 * zoom);
-        translate(context, canvas, dx, dy);
+        const shift = translate(context, canvas, dx, dy);
+        drawCtx.translate(shift.dx, shift.dy);
+        gridCtx.translate(shift.dx * 10, shift.dy * 10);
       }
     };
     const mouseup = () => {
       isDragging = false;
     };
-    canvas.addEventListener("mousedown", mousedown);
-    canvas.addEventListener("mousemove", mousemove);
-    canvas.addEventListener("mouseup", mouseup);
-    canvas.addEventListener("mouseleave", mouseup);
+    container.addEventListener("mousedown", mousedown);
+    container.addEventListener("mousemove", mousemove);
+    container.addEventListener("mouseup", mouseup);
+    container.addEventListener("mouseleave", mouseup);
 
     const render = () => {
       animationFrameId = window.requestAnimationFrame(render);
       draw(context, image);
+      drawing(drawCtx, array);
+      if (!isLoad) drawCover(gridCtx);
     };
     render();
 
     return () => {
-      canvas.removeEventListener("mousedown", mousedown);
-      canvas.removeEventListener("mousemove", mousemove);
-      canvas.removeEventListener("mouseup", mouseup);
-      canvas.removeEventListener("mouseleave", mouseup);
+      container.removeEventListener("mousedown", mousedown);
+      container.removeEventListener("mousemove", mousemove);
+      container.removeEventListener("mouseup", mouseup);
+      container.removeEventListener("mouseleave", mouseup);
       window.cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -101,6 +164,13 @@ const PixelViewer = () => {
   const zoom = (scaleFactor) => () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
+
+    const grid = gridRef.current;
+    const gridCtx = grid.getContext("2d");
+
+    const drawCanvas = drawRef.current;
+    const drawCtx = drawCanvas.getContext("2d");
+
     const currentScale = Math.abs((context.currentScale || 1) * scaleFactor);
     if (currentScale < 1) return;
     context.currentScale = currentScale;
@@ -108,11 +178,25 @@ const PixelViewer = () => {
     const centerX = canvas.width / 2 - context.currentTranslate.x;
     const centerY = canvas.height / 2 - context.currentTranslate.y;
 
+    const centerGritX = grid.width / 2 - context.currentTranslate.x * 10;
+    const centerGritY = grid.height / 2 - context.currentTranslate.y * 10;
+
     context.translate(centerX, centerY);
     context.scale(scaleFactor, scaleFactor);
     context.translate(-centerX, -centerY);
 
-    translate(context, canvas);
+    drawCtx.translate(centerX, centerY);
+    drawCtx.scale(scaleFactor, scaleFactor);
+    drawCtx.translate(-centerX, -centerY);
+
+    const shift = translate(context, canvas);
+    drawCtx.translate(shift.dx, shift.dy);
+
+    gridCtx.translate(centerGritX, centerGritY);
+    gridCtx.scale(scaleFactor, scaleFactor);
+    gridCtx.translate(-centerGritX, -centerGritY);
+
+    gridCtx.translate(shift.dx * 10, shift.dy * 10);
   };
 
   return (
@@ -126,6 +210,32 @@ const PixelViewer = () => {
         width={168}
         height={450}
         ref={canvasRef}
+      ></canvas>
+
+      <canvas
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          imageRendering: "pixelated",
+          height: "100%",
+        }}
+        width={168}
+        height={450}
+        ref={drawRef}
+      ></canvas>
+
+      <canvas
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          imageRendering: "pixelated",
+          height: "100%",
+        }}
+        width={168 * 10}
+        height={450 * 10}
+        ref={gridRef}
       ></canvas>
       <div className="canvas-btns">
         <button onClick={zoom(1.1)}>

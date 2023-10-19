@@ -62,7 +62,7 @@ const Constructor = () => {
       {step === "pixel" && (
         <>
           <div className="viewer-container">
-            <PixelViewer />
+            <PixelViewer order={order} />
           </div>
           <div className="right-bar">
             <Design onChange={(data) => console.log(data)} />
