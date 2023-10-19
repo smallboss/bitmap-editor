@@ -1,5 +1,5 @@
-import Button from "../../components/Button";
 import "./styles.scss";
+import {Link} from "react-router-dom";
 
 const Home = () => {
   return (
@@ -19,9 +19,15 @@ const Home = () => {
           experience
           <br /> throughout the process to the finish line.
         </p>
-        <div style={{ display: "flex" }}>
-          <Button style={{ marginRight: "20px" }}>Get Started</Button>
-          <Button>Log In</Button>
+        <div className="home__buttons">
+          <Link className="home__buttons--getStart" to="constructor/6526d5bffb30d429e3c68ad7">
+            Get Started
+            <div className="home__buttons--getStart--background"></div>
+          </Link>
+          <button className="home__buttons--logIn">
+            Log In
+            <div className="home__buttons--logIn--background"></div>
+          </button>
         </div>
       </div>
     </div>
