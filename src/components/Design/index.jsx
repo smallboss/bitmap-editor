@@ -4,18 +4,25 @@ import "./style.scss";
 
 const colors = ["00F0FF", "00FF18", "2400FF", "FFFFFF", "FF0000", "FF00F6"];
 
-const Design = ({ defaultValue = {}, onChange = () => {} }) => {
+const Design = ({ data, setData }) => {
   const [drop, setDrop] = useState(null);
-  const [data, setData] = useState({
-    color: "00F0FF",
-    erase: false,
-    side: "Left",
-    grid: true,
-    ...defaultValue,
-  });
 
   const toggleTool = (property, value) => () => {
-    onChange({ property, value });
+    if (property === "color") {
+      setData((prev) => ({
+        ...prev,
+        erase: false,
+        zoom: false,
+      }));
+    }
+
+    if (property === "erase") {
+      setData((prev) => ({
+        ...prev,
+        zoom: false,
+      }));
+    }
+
     setData((prev) => ({
       ...prev,
       [property]: value,
@@ -52,6 +59,11 @@ const Design = ({ defaultValue = {}, onChange = () => {} }) => {
                 <div
                   key={color}
                   className="body-item"
+                  style={
+                    data.color === color && !data.erase && !data.zoom
+                      ? { backgroundColor: "white", color: "black" }
+                      : {}
+                  }
                   onClick={toggleTool("color", color)}
                 >
                   <div
@@ -70,7 +82,8 @@ const Design = ({ defaultValue = {}, onChange = () => {} }) => {
       <div className="design__item">
         <div
           className="design__item__header"
-          onClick={toggleTool("erase", !data.erase)}
+          onClick={toggleTool("erase", true)}
+          style={data.erase && !data.zoom ? { backgroundColor: "#214167" } : {}}
         >
           <Icon name="eraser" size={25} color="white" />
           <span>Erase</span>

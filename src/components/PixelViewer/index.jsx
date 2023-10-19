@@ -1,18 +1,33 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Comments from "../../components/Comments";
+import Design from "../../components/Design";
 import Icon from "../Icon";
 import "./style.scss";
 
 const PixelViewer = ({ order }) => {
   const canvasRef = useRef(null);
   const gridRef = useRef(null);
+  const [conf, setConf] = useState({
+    color: "00F0FF",
+    erase: false,
+    side: "Left",
+    grid: true,
+    zoom: true,
+  });
 
   const draw = (ctx, image, pixels) => {
     ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
+    const test = 0.5 / (ctx.currentScale || 1);
+    
+    ctx.translate(test, test);
 
     for (let pixel in pixels) {
+      ctx.beginPath();
       ctx.fillStyle = pixels[pixel].color;
-      ctx.fillRect(...pixel.split(","), 1, 1);
+      ctx.rect(...pixel.split(","), 1, 1);
+      ctx.fill()
     }
+    ctx.translate(-test, -test);
   };
 
   const drawGrid = (ctx) => {
@@ -69,6 +84,12 @@ const PixelViewer = ({ order }) => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    context.conf = conf;
+  }, [conf]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
     const container = canvas.parentElement;
     const context = canvas.getContext("2d");
     context.imageSmoothingEnabled = false;
@@ -78,14 +99,12 @@ const PixelViewer = ({ order }) => {
     };
     let animationFrameId;
     let isDragging = false;
-    let isLoad = true;
 
     let image = new Image();
     image.onload = () => {
       setTimeout(() => {
         image.onload = null;
         image.src = canvas.toDataURL();
-        isLoad = false;
       }, 700);
     };
     image.crossOrigin = "anonymous";
@@ -95,11 +114,6 @@ const PixelViewer = ({ order }) => {
     const gridCtx = grid.getContext("2d");
     gridCtx.imageSmoothingEnabled = false;
 
-    let mod = "draw";
-
-    window.mod = () => {
-      mod = mod ? "" : "draw";
-    };
     const mousedown = () => {
       isDragging = true;
     };
@@ -108,7 +122,7 @@ const PixelViewer = ({ order }) => {
       if (e.layerX < 0) return;
       if (isDragging) {
         const zoom = context.currentScale || 1;
-        if (mod === "draw") {
+        if (!context.conf?.zoom) {
           const scaleX = canvas.width / container.offsetWidth / zoom;
           const scaleY = canvas.height / container.offsetHeight / zoom;
           const transform = context.getTransform();
@@ -117,10 +131,15 @@ const PixelViewer = ({ order }) => {
           const x = Math.floor(e.offsetX * scaleX - translationX);
           const y = Math.floor(e.offsetY * scaleY - translationY);
 
-          pixels[`${x},${y}`] = {
-            color: "#000000",
-          };
-
+          if (context.conf?.erase) {
+            delete pixels[`${x},${y}`];
+          } else {
+            pixels[`${x},${y}`] = {
+              color: context.conf?.color
+                ? `#${context.conf?.color}`
+                : "#000000",
+            };
+          }
           return;
         }
         const dx = e.movementX / (2 * zoom);
@@ -140,7 +159,11 @@ const PixelViewer = ({ order }) => {
     const render = () => {
       animationFrameId = window.requestAnimationFrame(render);
       draw(context, image, pixels);
-      if (!isLoad) drawGrid(gridCtx);
+      if (context.conf?.grid) {
+        drawGrid(gridCtx);
+      } else {
+        gridCtx.clearRect(0, 0, gridCtx.canvas.width, gridCtx.canvas.height);
+      }
     };
     render();
 
@@ -184,42 +207,58 @@ const PixelViewer = ({ order }) => {
   };
 
   return (
-    <div className="canvas-wrapper">
-      <canvas
-        style={{
-          backgroundColor: "white",
-          imageRendering: "pixelated",
-          height: "100%",
-        }}
-        width={168}
-        height={450}
-        ref={canvasRef}
-      ></canvas>
+    <>
+      <div className="viewer-container">
+        <div className="canvas-wrapper">
+          <canvas
+            style={{
+              backgroundColor: "white",
+              imageRendering: "pixelated",
+              height: "100%",
+            }}
+            width={168}
+            height={450}
+            ref={canvasRef}
+          ></canvas>
 
-      <canvas
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          imageRendering: "pixelated",
-          height: "100%",
-        }}
-        width={168 * 10}
-        height={450 * 10}
-        ref={gridRef}
-      ></canvas>
-      <div className="canvas-btns">
-        <button onClick={zoom(1.1)}>
-          <Icon name="zoom-in" size={28} color="white" />
-        </button>
-        <button onClick={zoom(1 / 1.1)}>
-          <Icon name="zoom-out" size={28} color="white" />
-        </button>
-        <button>
-          <Icon name="move" size={28} color="white" />
-        </button>
+          <canvas
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              imageRendering: "pixelated",
+              height: "100%",
+            }}
+            width={168 * 10}
+            height={450 * 10}
+            ref={gridRef}
+          ></canvas>
+          <div className="canvas-btns">
+            <button onClick={zoom(1.1)}>
+              <Icon name="zoom-in" size={28} color="white" />
+            </button>
+            <button onClick={zoom(1 / 1.1)}>
+              <Icon name="zoom-out" size={28} color="white" />
+            </button>
+            <button
+              style={conf.zoom ? { backgroundColor: "#214167" } : {}}
+              onClick={() => {
+                setConf((prev) => ({
+                  ...prev,
+                  zoom: true,
+                }));
+              }}
+            >
+              <Icon name="move" size={28} color="white" />
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+      <div className="right-bar">
+        <Design data={conf} setData={setConf} />
+        <Comments />
+      </div>
+    </>
   );
 };
 

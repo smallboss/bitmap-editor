@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
-import Comments from "../../components/Comments";
-import Design from "../../components/Design";
 import Icon from "../../components/Icon";
 import PixelViewer from "../../components/PixelViewer";
 import ProjectPanel from "../../components/ProjectPanel";
@@ -59,17 +57,7 @@ const Constructor = () => {
           />
         </Button>
       </div>
-      {step === "pixel" && (
-        <>
-          <div className="viewer-container">
-            <PixelViewer order={order} />
-          </div>
-          <div className="right-bar">
-            <Design onChange={(data) => console.log(data)} />
-            <Comments />
-          </div>
-        </>
-      )}
+      {step === "pixel" && <PixelViewer order={order} />}
       {step === "order" && <SocksViewer order={order} />}
     </div>
   );
