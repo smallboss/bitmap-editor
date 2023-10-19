@@ -17,6 +17,54 @@ const getTransform = (transform) => {
   return [x, y, scale];
 };
 
+const translate = (container, dx = 0, dy = 0) => {
+  const [x, y, scale] = getTransform(container.style.transform);
+  let reX = x + dx;
+  let reY = y + dy;
+
+  const checkValWidth = (container.offsetWidth * scale - container.offsetWidth) / 2
+  const checkValHeight = (container.offsetHeight * scale - container.offsetHeight) / 2
+
+  if (x + dx > checkValWidth) reX = checkValWidth;
+  if (x + dx < -checkValWidth) reX = -checkValWidth;
+
+  if (y + dy > checkValHeight) reY = checkValHeight;
+  if (y + dy < -checkValHeight) reY = -checkValHeight;
+
+  container.style.transform = `translate(${reX}px, ${reY}px) scale(${scale})`;
+};
+
+const draw = (ctx, image, pixels) => {
+  ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+  for (let pixel in pixels) {
+    ctx.beginPath();
+    ctx.fillStyle = pixels[pixel].color;
+    ctx.rect(...pixel.split(","), 1, 1);
+    ctx.fill();
+  }
+};
+
+const drawGrid = (ctx) => {
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  ctx.beginPath();
+  const step = 10;
+
+  for (let x = 0; x <= ctx.canvas.width; x += step) {
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, ctx.canvas.height);
+  }
+
+  for (let y = 0; y <= ctx.canvas.height; y += step) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(ctx.canvas.width, y);
+  }
+
+  ctx.strokeStyle = "#6E7683";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+};
+
 const PixelViewer = ({ order }) => {
   const canvasRef = useRef(null);
   const gridRef = useRef(null);
@@ -27,66 +75,6 @@ const PixelViewer = ({ order }) => {
     grid: true,
     zoom: true,
   });
-
-  const draw = (ctx, image, pixels) => {
-    ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
-
-    for (let pixel in pixels) {
-      ctx.beginPath();
-      ctx.fillStyle = pixels[pixel].color;
-      ctx.rect(...pixel.split(","), 1, 1);
-      ctx.fill();
-    }
-  };
-
-  const drawGrid = (ctx) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.beginPath();
-    const step = 10;
-    for (let x = 0; x <= ctx.canvas.width; x += step) {
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, ctx.canvas.height);
-    }
-
-    for (let y = 0; y <= ctx.canvas.height; y += step) {
-      ctx.moveTo(0, y - 0);
-      ctx.lineTo(ctx.canvas.width, y - 0);
-    }
-
-    ctx.strokeStyle = "#6E7683";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  };
-
-  const translate = (container, dx = 0, dy = 0) => {
-    const [x, y, scale] = getTransform(container.style.transform);
-    let reX = x + dx;
-    let reY = y + dy;
-
-    if (x + dx > (container.offsetWidth * scale - container.offsetWidth) / 2) {
-      reX = (container.offsetWidth * scale - container.offsetWidth) / 2;
-    }
-
-    if (x + dx < -(container.offsetWidth * scale - container.offsetWidth) / 2) {
-      reX = -(container.offsetWidth * scale - container.offsetWidth) / 2;
-    }
-
-    if (
-      y + dy >
-      (container.offsetHeight * scale - container.offsetHeight) / 2
-    ) {
-      reY = (container.offsetHeight * scale - container.offsetHeight) / 2;
-    }
-
-    if (
-      y + dy <
-      -(container.offsetHeight * scale - container.offsetHeight) / 2
-    ) {
-      reY = -(container.offsetHeight * scale - container.offsetHeight) / 2;
-    }
-
-    container.style.transform = `translate(${reX}px, ${reY}px) scale(${scale})`;
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -132,11 +120,7 @@ const PixelViewer = ({ order }) => {
           if (context.conf?.erase) {
             delete pixels[`${x},${y}`];
           } else {
-            pixels[`${x},${y}`] = {
-              color: context.conf?.color
-                ? `#${context.conf?.color}`
-                : "#000000",
-            };
+            pixels[`${x},${y}`] = {color: `#${context.conf?.color || '000000'}`};
           }
           return;
         }
@@ -199,6 +183,7 @@ const PixelViewer = ({ order }) => {
                 width: "100%",
                 height: "100%",
                 transform: "translate(0, 0) scale(1)",
+                transition: "transform 0.2s ease-out"
               }}
             >
               <canvas
@@ -210,7 +195,7 @@ const PixelViewer = ({ order }) => {
                 width={168}
                 height={450}
                 ref={canvasRef}
-              ></canvas>
+              />
 
               <canvas
                 style={{
@@ -223,7 +208,7 @@ const PixelViewer = ({ order }) => {
                 width={168 * 10}
                 height={450 * 10}
                 ref={gridRef}
-              ></canvas>
+              />
             </div>
           </div>
           <div className="canvas-btns">
