@@ -5,20 +5,17 @@ import "./style.scss";
 const PixelViewer = ({ order }) => {
   const canvasRef = useRef(null);
   const gridRef = useRef(null);
-  const drawRef = useRef(null);
 
-  const draw = (ctx, image) => {
+  const draw = (ctx, image, pixels) => {
     ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    for (let pixel in pixels) {
+      ctx.fillStyle = pixels[pixel].color;
+      ctx.fillRect(...pixel.split(","), 1, 1);
+    }
   };
 
-  const drawing = (ctx, array) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    array.forEach((item) => {
-      ctx.fillRect(...item.split(","), 1, 1);
-    });
-  };
-
-  const drawCover = (ctx) => {
+  const drawGrid = (ctx) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.beginPath();
     const step = 10;
@@ -98,10 +95,6 @@ const PixelViewer = ({ order }) => {
     const gridCtx = grid.getContext("2d");
     gridCtx.imageSmoothingEnabled = false;
 
-    const drawCanvas = drawRef.current;
-    const drawCtx = drawCanvas.getContext("2d");
-    gridCtx.imageSmoothingEnabled = false;
-
     let mod = "draw";
 
     window.mod = () => {
@@ -110,29 +103,29 @@ const PixelViewer = ({ order }) => {
     const mousedown = () => {
       isDragging = true;
     };
-    let array = [];
+    const pixels = {};
     const mousemove = (e) => {
+      if (e.layerX < 0) return;
       if (isDragging) {
         const zoom = context.currentScale || 1;
         if (mod === "draw") {
-          const scaleX = drawCanvas.width / container.offsetWidth / zoom;
-          const scaleY = drawCanvas.height / container.offsetHeight / zoom;
+          const scaleX = canvas.width / container.offsetWidth / zoom;
+          const scaleY = canvas.height / container.offsetHeight / zoom;
           const transform = context.getTransform();
           const translationX = transform.e / zoom;
           const translationY = transform.f / zoom;
           const x = Math.floor(e.offsetX * scaleX - translationX);
           const y = Math.floor(e.offsetY * scaleY - translationY);
 
-          if (!array.includes(`${x},${y}`)) {
-            array.push(`${x},${y}`);
-          }
+          pixels[`${x},${y}`] = {
+            color: "#000000",
+          };
 
           return;
         }
         const dx = e.movementX / (2 * zoom);
         const dy = e.movementY / (2 * zoom);
         const shift = translate(context, canvas, dx, dy);
-        drawCtx.translate(shift.dx, shift.dy);
         gridCtx.translate(shift.dx * 10, shift.dy * 10);
       }
     };
@@ -146,9 +139,8 @@ const PixelViewer = ({ order }) => {
 
     const render = () => {
       animationFrameId = window.requestAnimationFrame(render);
-      draw(context, image);
-      drawing(drawCtx, array);
-      if (!isLoad) drawCover(gridCtx);
+      draw(context, image, pixels);
+      if (!isLoad) drawGrid(gridCtx);
     };
     render();
 
@@ -168,9 +160,6 @@ const PixelViewer = ({ order }) => {
     const grid = gridRef.current;
     const gridCtx = grid.getContext("2d");
 
-    const drawCanvas = drawRef.current;
-    const drawCtx = drawCanvas.getContext("2d");
-
     const currentScale = Math.abs((context.currentScale || 1) * scaleFactor);
     if (currentScale < 1) return;
     context.currentScale = currentScale;
@@ -185,12 +174,7 @@ const PixelViewer = ({ order }) => {
     context.scale(scaleFactor, scaleFactor);
     context.translate(-centerX, -centerY);
 
-    drawCtx.translate(centerX, centerY);
-    drawCtx.scale(scaleFactor, scaleFactor);
-    drawCtx.translate(-centerX, -centerY);
-
     const shift = translate(context, canvas);
-    drawCtx.translate(shift.dx, shift.dy);
 
     gridCtx.translate(centerGritX, centerGritY);
     gridCtx.scale(scaleFactor, scaleFactor);
@@ -210,19 +194,6 @@ const PixelViewer = ({ order }) => {
         width={168}
         height={450}
         ref={canvasRef}
-      ></canvas>
-
-      <canvas
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          imageRendering: "pixelated",
-          height: "100%",
-        }}
-        width={168}
-        height={450}
-        ref={drawRef}
       ></canvas>
 
       <canvas
