@@ -42,14 +42,14 @@ const Design = ({ data, setData }) => {
           <span>Add to design</span>
           <div className="toggle-slide">
             <Icon
-              className={drop == "color" ? "mirror-y" : ""}
+              className={drop === "color" ? "mirror-y" : ""}
               name="arrow-up"
               size={18}
               color="white"
             />
           </div>
         </div>
-        {drop == "color" && (
+        {drop === "color" && (
           <div className="design__item__body">
             <div className="body-title">
               Select a color to modify and expand the design
@@ -96,14 +96,14 @@ const Design = ({ data, setData }) => {
           <span>{data.side}</span>
           <div className="toggle-slide">
             <Icon
-              className={drop == "side" ? "mirror-y" : ""}
+              className={drop === "side" ? "mirror-y" : ""}
               name="arrow-up"
               size={18}
               color="white"
             />
           </div>
         </div>
-        {drop == "side" && (
+        {drop === "side" && (
           <div className="design__item__body">
             <div className="body-container">
               <div className="body-item" onClick={toggleTool("side", "Left")}>
