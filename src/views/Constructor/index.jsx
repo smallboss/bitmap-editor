@@ -8,11 +8,16 @@ import OrderService from "../../services/order.service";
 
 import "./style.scss";
 import SocksViewer from "./components/SocksViewer";
+import OrderDetailsModal from "./components/OrderDetailsModal";
+import TipsModal from "./components/TipsModal";
 
 const Constructor = () => {
   const { orderId } = useParams();
   const [step, setStep] = useState("pixel");
   const [order, setOrder] = useState(null);
+
+  const [isOpenedOrderDetailsModal, setIsOpenedOrderDetailsModal] = useState(false)
+  const [isOpenedTipsModal, setIsOpenedTipsModal] = useState(false)
 
   useEffect(() => {
     const request = async () => {
@@ -45,7 +50,11 @@ const Constructor = () => {
           <span>Order no 000000X</span>
         </div>
 
-        <ProjectPanel onClick={(value) => console.log(value)} />
+        <ProjectPanel 
+          onClick={(value) => console.log(value)} 
+          setIsOpenedOrderDetailsModal={setIsOpenedOrderDetailsModal}
+          setIsOpenedTipsModal={setIsOpenedTipsModal}
+        />
 
         <Button onClick={() => setStep("order")}>
           <span>Ready to order</span>
@@ -59,6 +68,8 @@ const Constructor = () => {
       </div>
       {step === "pixel" && <PixelViewer order={order} />}
       {step === "order" && <SocksViewer order={order} />}
+      {isOpenedOrderDetailsModal && <OrderDetailsModal setIsOpenedModal={setIsOpenedOrderDetailsModal} orderItems={order.orderItems[0]}/>}
+      {isOpenedTipsModal && <TipsModal setIsOpenedModal={setIsOpenedTipsModal} />}
     </div>
   );
 };
