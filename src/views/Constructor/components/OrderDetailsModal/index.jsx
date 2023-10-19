@@ -14,7 +14,6 @@ const findMaterials = (sockType, weltType) => {
     }
 }
 
-
 const convertSockColor = (sockColorName) => {
     for (const category in SockColors) {
         for (const color in SockColors[category]) {
@@ -26,9 +25,24 @@ const convertSockColor = (sockColorName) => {
     return "#FFFFFF";
 }
 
+const formatQuantityNum = (num) => {
+    return num.toString().padStart(3, '0');
+}
 
 const OrderDetailsModal = ({ setIsOpenedModal, orderItems }) => {
-    const { type, weltType, color, heel, toes, welt } = orderItems;
+    const {
+        type, 
+        weltType,
+        color,
+        heel,
+        toes,
+        welt,
+        quantity2125,
+        quantity2629,
+        quantity3034,
+        quantity3540,
+        quantity4146
+    } = orderItems;
     const heading = "Order Details";
 
     const renderColorsColumn = [color, heel, toes, welt].map((colorName, i) => {
@@ -41,6 +55,24 @@ const OrderDetailsModal = ({ setIsOpenedModal, orderItems }) => {
         )
     })
 
+    const sizesAndQuantities = [
+        { size: '21 - 25', quantity: quantity2125 },
+        { size: '26 - 29', quantity: quantity2629 },
+        { size: '30 - 34', quantity: quantity3034 },
+        { size: '35 - 40', quantity: quantity3540 },
+        { size: '41 - 46', quantity: quantity4146 },
+    ];
+    const renderSizesColumn = sizesAndQuantities.map(({ size, quantity }) => {
+        const formattedQuantity = formatQuantityNum(quantity);
+        return (
+            <li key={size} className="content__details">
+                <p className="content__details--description">
+                    {formattedQuantity} Pairs <span>{size} Size</span>
+                </p>
+            </li>
+        )
+    })
+    
     return (
         <Modal heading={heading} setIsOpenedModal={setIsOpenedModal}>
             <div className="content">
@@ -62,36 +94,7 @@ const OrderDetailsModal = ({ setIsOpenedModal, orderItems }) => {
 
                 <ul className="content__col content__sizes">
                     <h5 className="content__title">Size & Quantity</h5>
-                    <li className="content__details">
-                        <p className="content__details--description">
-                            000 Pairs <span>40 - 50 Size</span>
-                        </p>
-                    </li>
-                    <li className="content__details">
-                        <p className="content__details--description">
-                            000 Pairs <span>40 - 50 Size</span>
-                        </p>
-                    </li>
-                    <li className="content__details">
-                        <p className="content__details--description">
-                            000 Pairs <span>40 - 50 Size</span>
-                        </p>
-                    </li>
-                    <li className="content__details">
-                        <p className="content__details--description">
-                            000 Pairs <span>40 - 50 Size</span>
-                        </p>
-                    </li>
-                    <li className="content__details">
-                        <p className="content__details--description">
-                            000 Pairs <span>40 - 50 Size</span>
-                        </p>
-                    </li>
-                    <li className="content__details">
-                        <p className="content__details--description">
-                            000 Pairs <span>40 - 50 Size</span>
-                        </p>
-                    </li>
+                    {renderSizesColumn}
                 </ul>
 
                 <div className="content__col">
