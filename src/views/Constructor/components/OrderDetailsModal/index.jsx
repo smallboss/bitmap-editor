@@ -65,8 +65,8 @@ const OrderDetailsModal = ({ setIsOpenedModal, orderItems }) => {
     const renderSizesColumn = sizesAndQuantities.map(({ size, quantity }) => {
         const formattedQuantity = formatQuantityNum(quantity);
         return (
-            <li key={size} className="content__details">
-                <p className="content__details--description">
+            <li key={size} className="order-modal-content__details">
+                <p className="order-modal-content__details--description">
                     {formattedQuantity} Pairs <span>{size} Size</span>
                 </p>
             </li>
@@ -75,31 +75,31 @@ const OrderDetailsModal = ({ setIsOpenedModal, orderItems }) => {
     
     return (
         <Modal heading={heading} setIsOpenedModal={setIsOpenedModal}>
-            <div className="content">
-                <ul className="content__col content__specifications ">
-                    <h5 className="content__title">Technical specification</h5>
-                    <li className="content__details">
-                        <h6 className="content__details--subtitle">Socks Materials</h6>
-                        <p className="content__details--description">{findMaterials(type, weltType)}</p>
+            <div className="order-modal-content">
+                <ul className="order-modal-content__col order-modal-content__specifications ">
+                    <h5 className="order-modal-content__title">Technical specification</h5>
+                    <li className="order-modal-content__details">
+                        <h6 className="order-modal-content__details--subtitle">Socks Materials</h6>
+                        <p className="order-modal-content__details--description">{findMaterials(type, weltType)}</p>
                     </li>
-                    <li className="content__details">
-                        <h6 className="content__details--subtitle">Packaging</h6>
-                        <p className="content__details--description">Lorem ipsum dolor sit amet</p>
+                    <li className="order-modal-content__details">
+                        <h6 className="order-modal-content__details--subtitle">Packaging</h6>
+                        <p className="order-modal-content__details--description">Lorem ipsum dolor sit amet</p>
                     </li>
-                    <li className="content__details">
-                        <h6 className="content__details--subtitle">Label</h6>
-                        <p className="content__details--description">Lorem ipsum dolor sit amet</p>
+                    <li className="order-modal-content__details">
+                        <h6 className="order-modal-content__details--subtitle">Label</h6>
+                        <p className="order-modal-content__details--description">Lorem ipsum dolor sit amet</p>
                     </li>
                 </ul>
 
-                <ul className="content__col content__sizes">
-                    <h5 className="content__title">Size & Quantity</h5>
+                <ul className="order-modal-content__col order-modal-content__sizes">
+                    <h5 className="order-modal-content__title">Size & Quantity</h5>
                     {renderSizesColumn}
                 </ul>
 
-                <div className="content__col">
-                    <h5 className="content__title content__title--low-margin">Socks colors</h5>
-                    <ul className="content__colors"> 
+                <div className="order-modal-content__col">
+                    <h5 className="order-modal-content__title order-modal-content__title--low-margin">Socks colors</h5>
+                    <ul className="order-modal-content__colors"> 
                         {renderColorsColumn}
                     </ul>
                 </div>
