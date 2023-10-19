@@ -35,36 +35,33 @@
 
     &--link {
       color: $white_color;
+      font-size: 19px;
+      line-height: calc(28px - 2.5px);
       text-transform: uppercase;
       text-decoration: none;
       transition: all 150ms ease-in-out;
+      padding-bottom: 2.5px;
 
       &:hover {
-        font-size: 19px;
         font-weight: 700;
-        line-height: 28px;
-        padding-bottom: 2.5px;
+        line-height: calc(28px - 2.5px - 1px);
         border-bottom: 1px solid $white_color;
       }
     }
 
     &--logInButton {
       cursor: pointer;
-      border: none;
+      padding: 10px 25px;
       font-size: 21px;
-      line-height: 27.3px;
-      border-radius: 60.526px;
       font-weight: 400;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: $blue_color;
+      line-height: 27.3px;
       color: $white_color;
+      border: none;
+      border-radius: 60.526px;
+      background-color: $blue_color;
       overflow: hidden;
       position: relative;
       z-index: 2;
-      text-decoration: none;
-      padding: 10px 25px;
 
       &--background {
         width: 0;
@@ -79,10 +76,13 @@
         border-radius: 50%;
       }
 
+      &:hover {
+        color: $marine_blue_color;
+      }
+
       &:hover &--background {
         width: 150%;
         height: 406%;
-        color: #ffffff;
         border: none;
       }
     }
