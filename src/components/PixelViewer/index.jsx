@@ -7,7 +7,7 @@ import "./style.scss";
 const getTransform = (transform) => {
   const pattern = /translate\((-?\d*\.?\d+)px, (-?\d*\.?\d+)px\)/;
   let match = transform.match(pattern);
-  const x = parseFloat(match[1]); // parseFloat converts the matched string to a floating-point number
+  const x = parseFloat(match[1]);
   const y = parseFloat(match[2]);
 
   const scalePattern = /scale\((-?\d*\.?\d+)\)/;
@@ -58,6 +58,36 @@ const PixelViewer = ({ order }) => {
     ctx.stroke();
   };
 
+  const translate = (container, dx = 0, dy = 0) => {
+    const [x, y, scale] = getTransform(container.style.transform);
+    let reX = x + dx;
+    let reY = y + dy;
+
+    if (x + dx > (container.offsetWidth * scale - container.offsetWidth) / 2) {
+      reX = (container.offsetWidth * scale - container.offsetWidth) / 2;
+    }
+
+    if (x + dx < -(container.offsetWidth * scale - container.offsetWidth) / 2) {
+      reX = -(container.offsetWidth * scale - container.offsetWidth) / 2;
+    }
+
+    if (
+      y + dy >
+      (container.offsetHeight * scale - container.offsetHeight) / 2
+    ) {
+      reY = (container.offsetHeight * scale - container.offsetHeight) / 2;
+    }
+
+    if (
+      y + dy <
+      -(container.offsetHeight * scale - container.offsetHeight) / 2
+    ) {
+      reY = -(container.offsetHeight * scale - container.offsetHeight) / 2;
+    }
+
+    container.style.transform = `translate(${reX}px, ${reY}px) scale(${scale})`;
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -69,10 +99,6 @@ const PixelViewer = ({ order }) => {
     const container = canvas.parentElement;
     const context = canvas.getContext("2d");
     context.imageSmoothingEnabled = false;
-    context.currentTranslate = {
-      x: 0,
-      y: 0,
-    };
     let animationFrameId;
     let isDragging = false;
 
@@ -117,10 +143,7 @@ const PixelViewer = ({ order }) => {
         const dx = e.movementX;
         const dy = e.movementY;
 
-        const [x, y, scale] = getTransform(container.style.transform);
-        container.style.transform = `translate(${x + dx}px, ${
-          y + dy
-        }px) scale(${scale})`;
+        translate(container, dx, dy);
       }
     };
     const mouseup = () => {
@@ -157,65 +180,71 @@ const PixelViewer = ({ order }) => {
 
     const [x, y, scale] = getTransform(container.style.transform);
 
+    if (scale + scaleFactor < 1) return;
+    if (scale + scaleFactor > 7) return;
+
     container.style.transform = `translate(${x}px, ${y}px) scale(${
       scale + scaleFactor
     })`;
+    translate(container);
   };
 
   return (
     <>
       <div className="viewer-container">
-        <div className="canvas-wrapper">
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              transform: "translate(0, 0) scale(1)",
-            }}
-          >
-            <canvas
+        <div style={{ position: "relative", height: "100%" }}>
+          <div className="canvas-wrapper">
+            <div
               style={{
-                backgroundColor: "white",
-                imageRendering: "pixelated",
+                width: "100%",
                 height: "100%",
+                transform: "translate(0, 0) scale(1)",
               }}
-              width={168}
-              height={450}
-              ref={canvasRef}
-            ></canvas>
+            >
+              <canvas
+                style={{
+                  backgroundColor: "white",
+                  imageRendering: "pixelated",
+                  height: "100%",
+                }}
+                width={168}
+                height={450}
+                ref={canvasRef}
+              ></canvas>
 
-            <canvas
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                imageRendering: "pixelated",
-                height: "100%",
-              }}
-              width={168 * 10}
-              height={450 * 10}
-              ref={gridRef}
-            ></canvas>
+              <canvas
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  imageRendering: "pixelated",
+                  height: "100%",
+                }}
+                width={168 * 10}
+                height={450 * 10}
+                ref={gridRef}
+              ></canvas>
+            </div>
           </div>
-        </div>
-        <div className="canvas-btns">
-          <button onClick={zoom(1)}>
-            <Icon name="zoom-in" size={28} color="white" />
-          </button>
-          <button onClick={zoom(-1)}>
-            <Icon name="zoom-out" size={28} color="white" />
-          </button>
-          <button
-            style={conf.zoom ? { backgroundColor: "#214167" } : {}}
-            onClick={() => {
-              setConf((prev) => ({
-                ...prev,
-                zoom: true,
-              }));
-            }}
-          >
-            <Icon name="move" size={28} color="white" />
-          </button>
+          <div className="canvas-btns">
+            <button onClick={zoom(1)}>
+              <Icon name="zoom-in" size={28} color="white" />
+            </button>
+            <button onClick={zoom(-1)}>
+              <Icon name="zoom-out" size={28} color="white" />
+            </button>
+            <button
+              style={conf.zoom ? { backgroundColor: "#214167" } : {}}
+              onClick={() => {
+                setConf((prev) => ({
+                  ...prev,
+                  zoom: true,
+                }));
+              }}
+            >
+              <Icon name="move" size={28} color="white" />
+            </button>
+          </div>
         </div>
       </div>
       <div className="right-bar">
